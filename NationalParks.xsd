@@ -64,7 +64,7 @@
                     <xs:element name="State" type="xs:string" />
 
                     <!-- Zip code -->
-                    <xs:element name="Zip" type="xs:string" />
+                    <xs:element name="Zip" type="xs:int" />
 
                   </xs:sequence>
 
@@ -84,9 +84,7 @@
                 Rating is optional.
                 Some parks should have it, and some should not.
             -->
-            <xs:attribute name="Rating"
-                          type="xs:string"
-                          use="optional" />
+            <xs:attribute name="Rating" type="xs:decimal" use="optional" />
 
           </xs:complexType>
         </xs:element>
