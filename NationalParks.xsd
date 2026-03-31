@@ -24,7 +24,7 @@
                     <xs:element name="Street" type="xs:string" />
                     <xs:element name="City" type="xs:string" />
                     <xs:element name="State" type="xs:string" />
-                    <xs:element name="Zip" type="xs:int" />
+                    <xs:element name="Zip" type="xs:string" />
                   </xs:sequence>
 
                   <!-- this one is required -->
@@ -35,7 +35,7 @@
             </xs:sequence>
 
             <!-- rating is optional -->
-            <xs:attribute name="Rating" type="xs:decimal" use="optional" />
+            <xs:attribute name="Rating" type="xs:string" use="optional" />
           </xs:complexType>
         </xs:element>
 
