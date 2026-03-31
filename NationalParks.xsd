@@ -1,91 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
-    NationalParks.xsd
-    This schema defines the structure for the NationalParks XML file.
-
-    I kept this very direct and simple on purpose:
-    - one root element: NationalParks
-    - many NationalPark entries inside it
-    - each park must have Name, Phone, and Address in that order
-    - Rating is optional
-    - NearestAirport is required on Address
--->
-
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
            elementFormDefault="qualified">
 
-  <!-- Root element that holds the full list of parks -->
+  <!-- root element -->
   <xs:element name="NationalParks">
     <xs:complexType>
       <xs:sequence>
 
-        <!--
-            Each NationalParks file can contain many NationalPark entries.
-            maxOccurs="unbounded" means there is no fixed limit.
-        -->
+        <!-- each file can have a bunch of parks -->
         <xs:element name="NationalPark" maxOccurs="unbounded">
           <xs:complexType>
-
-            <!--
-                The assignment says elements at the same level should go
-                from left to right in the given order.
-                So we keep the order exactly:
-                Name -> Phone -> Address
-            -->
             <xs:sequence>
 
-              <!-- Park name -->
+              <!-- basic park info -->
               <xs:element name="Name" type="xs:string" />
+              <xs:element name="Phone" type="xs:string" minOccurs="1" maxOccurs="unbounded" />
 
-              <!--
-                  A park must have at least one phone number.
-                  Some parks can have more than one.
-              -->
-              <xs:element name="Phone"
-                          type="xs:string"
-                          minOccurs="1"
-                          maxOccurs="unbounded" />
-
-              <!-- Address information for the park -->
+              <!-- address block -->
               <xs:element name="Address">
                 <xs:complexType>
                   <xs:sequence>
-
-                    <!-- Street number -->
                     <xs:element name="Number" type="xs:int" />
-
-                    <!-- Street name -->
                     <xs:element name="Street" type="xs:string" />
-
-                    <!-- City -->
                     <xs:element name="City" type="xs:string" />
-
-                    <!-- State -->
                     <xs:element name="State" type="xs:string" />
-
-                    <!-- Zip code -->
                     <xs:element name="Zip" type="xs:int" />
-
                   </xs:sequence>
 
-                  <!--
-                      This attribute is required for every Address.
-                      The assignment figure shows NearestAirport as required.
-                  -->
-                  <xs:attribute name="NearestAirport"
-                                type="xs:string"
-                                use="required" />
+                  <!-- this one is required -->
+                  <xs:attribute name="NearestAirport" type="xs:string" use="required" />
                 </xs:complexType>
               </xs:element>
 
             </xs:sequence>
 
-            <!--
-                Rating is optional.
-                Some parks should have it, and some should not.
-            -->
+            <!-- rating is optional -->
             <xs:attribute name="Rating" type="xs:decimal" use="optional" />
-
           </xs:complexType>
         </xs:element>
 
